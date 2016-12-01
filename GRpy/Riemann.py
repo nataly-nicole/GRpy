@@ -152,6 +152,14 @@ class Scalar(object):
 	def __repr__(self):
 		return self
 
+def Scurv(metric,Ricci):
+	'''Computes the Curvature scalar R = g^{ab}R_{ab}'''
+	suma = 0
+	for i in arange(metric.dim):
+		for j in arange(metric.dim):
+			suma += metric.inverse[i,j]*Ricci[-i,-j]
+	return suma
+
 class Einstein(Tensor):
 	'''Computes the Einstein Tensor'''
 	def __init__(self,metric,Ric,RS):
