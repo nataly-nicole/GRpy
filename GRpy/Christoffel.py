@@ -50,8 +50,6 @@ class Christoffel(Tensor):
 						term1 = sp.diff(self.g_down[-m,-k],self.g_down.coords[l])
 						term2 = sp.diff(self.g_down[-m,-l],self.g_down.coords[k])
 						term3 = sp.diff(self.g_down[-k,-l],self.g_down.coords[m])
-						tr = self.g_up[i,m] * (term1+term2-term3)
-						suma += tr
-					res = sp.Rational(1,2)*suma
-					self.components[i,-k,-l] = res
+						suma += self.g_up[i,m] * (term1+term2-term3)
+					self.components[i,-k,-l] = sp.Rational(1,2)*suma
 		self.getNonZero()

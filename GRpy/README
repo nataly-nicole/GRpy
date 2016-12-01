@@ -30,14 +30,14 @@ Also, note that this may be obsoleted if tensor objects are finally natively
 implemented in sympy
 ############################################################################
 ############################################################################
-The new version has been performed by Nataly Ibarra and Guillermo Rubilar:
+The new version has been developed by Nataly Ibarra and Guillermo Rubilar:
 
-The code works for n-dimentional spaces and can computes many interesting 
-geometrical quantities as is shown in the test ipython notebook with the 
-sphere manifold.
+The code works for n-dimentional spaces and can compute many interesting 
+geometrical quantities as is shown in the test (jupyter) notebook for the 
+sphere.
 
-Problems with the computation of the determiant of the metric have been reported. 
-For any doubt contact to Nataly Ibarra at natalynicole.ibarravera@gmail.com
+Problems with the computation of the determinant of the metric have been reported. 
+For any comment please contact Nataly Ibarra at natalynicole.ibarravera@gmail.com
 
 An extensive manual will be ready soon!! ;)
 
