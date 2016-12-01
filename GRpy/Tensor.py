@@ -176,7 +176,7 @@ class Killing_Equation(Tensor):
 #			self.xi_up.components[i] = sp.Function()
 		self.rep  = self.g_down.rep
 		self.g_up = metr.inverse
-		super(Killing_Equation,self).__init__('K_eq_{ab}',rank=(0,2),shape=(-1,-1),coords=metr.coords)
+		super(Killing_Equation,self).__init__('K_{ab}',rank=(0,2),shape=(-1,-1),coords=metr.coords)
 
 	def allocate(self,rank):
 		Tensor.allocate(self,rank)
@@ -219,7 +219,7 @@ class Geodesic_Equation(Tensor):
 		for i in range(self.Chris.dim):
 			x_up.components[i] = sp.Function(str(Chris.coords[i]))(self.l)
 		self.x_up = x_up
-		super(Geodesic_Equation,self).__init__('geo_eq^{a}',rank=(1,0),shape=(1,),coords=self.g_down.coords)
+		super(Geodesic_Equation,self).__init__('(Geoeq)^{a}',rank=(1,0),shape=(1,),coords=self.g_down.coords)
 		ite = list(range(self.dim))
 		for i in range(self.dim):
 			ite[i] = (self.coords[i],self.x_up.components[i])

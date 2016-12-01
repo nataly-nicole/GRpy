@@ -162,11 +162,10 @@ def Scurv(metric,Ricci):
 
 class Einstein(Tensor):
 	'''Computes the Einstein Tensor'''
-	def __init__(self,metric,Ric,RS):
-		super(Einstein,self).__init__('G_{ab}',(0,2),(-1,-1),coords =Ric.coords)
-		g_down = metric
+	def __init__(self,metric,Ricci):
+		super(Einstein,self).__init__('G_{ab}',(0,2),(-1,-1), coords=metric.coords)
 		for a in arange(self.dim):
 			for b in arange(self.dim):
-				self.components[-a,-b] = Ric[-a,-b] - Rational(1,2)*RS*g_down[-a,-b]
+				self.components[-a,-b] = Ricci[-a,-b] - sp.Rational(1,2)*Scurv(metric,Ricci)*metric[-a,-b]
 		self.getNonZero()
 				
