@@ -167,6 +167,6 @@ class Einstein(Tensor):
 		g_down = metric
 		for a in arange(self.dim):
 			for b in arange(self.dim):
-				self.components[-a,-b] = Ric[-a,-b] - 0.5*RS*g_down[-a,-b]
+				self.components[-a,-b] = Ric[-a,-b] - Rational(1,2)*RS*g_down[-a,-b]
 		self.getNonZero()
 				
