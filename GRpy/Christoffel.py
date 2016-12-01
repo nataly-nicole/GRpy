@@ -37,7 +37,7 @@ class Christoffel(Tensor):
 		# Please note that this call will trigger a call to allocate in
 		# the Tensor class, but the allocate will actually be the allocate
 		# defined below
-		super(Christoffel,self).__init__('Gamma^{a}_{bc}',(1,2),(1,-1,-1),coords=metr.coords)
+		super(Christoffel,self).__init__('\Gamma^{a}_{\ \ bc}',(1,2),(1,-1,-1),coords=metr.coords)
 		
 	def allocate(self,rank):
 		Tensor.allocate(self,rank)

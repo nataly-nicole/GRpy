@@ -76,7 +76,7 @@ class Riemann(Tensor):
 							suma +=self.g_down[-a,-f]*R_tensor[f,-b,-c,-d]
 						self.components[-a,-b,-c,-d] = suma
 		self.Riemann_cov = self
-		Riemann_par = Tensor('R^{ab}_{cd}',(2,2),(-1,-1,-1,-1),
+		Riemann_par = Tensor('R^{ab}_{\ \ \ cd}',(2,2),(-1,-1,-1,-1),
 		coords=Chris.g_down.coords)
 		for a in arange(self.dim):
 			for b in arange(self.dim):
