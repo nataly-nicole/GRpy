@@ -22,7 +22,7 @@
 ################################################################################
 
 import sympy as sp
-from Tensor import Tensor,Metric
+from GRpy.Tensor import Tensor,Metric
 from numpy import arange
 
 
@@ -138,16 +138,16 @@ class Scalar(object):
 		self.Scr_Other = suma
 		
 	def __str__(self):
-		print 70*'='
-		print "The Ricci scalar is:"
-		print str(sp.cancel(self.Scr_Ricci))
-		print 70*'='
-		print "The Kretschmann scalar is:"
-		print str(sp.cancel(self.Scr_Kretsch))
-		print 70*'='
-		print "The Other scalar is:"
-		print str(sp.cancel(self.Scr_Other))
-		print 70*'='
+		print(70*'=')
+		print("The Ricci scalar is:")
+		print(str(sp.cancel(self.Scr_Ricci)))
+		print(70*'=')
+		print("The Kretschmann scalar is:")
+		print(str(sp.cancel(self.Scr_Kretsch)))
+		print(70*'=')
+		print("The Other scalar is:")
+		print(str(sp.cancel(self.Scr_Other)))
+		print(70*'=')
 
 	def __repr__(self):
 		return self

@@ -95,11 +95,11 @@ class Tensor(object):
 					nonzerov.append(self.components[key])
 			d = dict(zip(nonzerok,nonzerov))
 			keys = d.keys()
-			keys.sort()
+			#keys.sort()
 			self.nonzero = [(key,d[key]) for key in keys]
 			return self.nonzero
 		else:
-			print "Attempted to get components that have not been initialized!"
+			print("Attempted to get components that have not been initialized!")
 	
 	def __str__(self):
 		'''Print a "nice" human - readable representation of the tensor'''
@@ -107,15 +107,15 @@ class Tensor(object):
 # We will print only non-zero components unless all the components are zero
 		ttl=""
 		if self.nonzero:
-			print 70*'='
-			print ('The non-zero components of '+str(self.symbol)+' are:')
+			print(70*'=')
+			print('The non-zero components of '+str(self.symbol)+' are:')
 			for i in range(len(self.nonzero)):
 				ttl = (str(self.nonzero[i][0]) + " : "
 				+str(sp.cancel(self.nonzero[i][1])))
-				print ttl
-			print 70*'='
+				print(ttl)
+			print(70*'=')
 		else:
-			print ('All the components of '+str(self.symbol)+' are 0!')
+			print('All the components of '+str(self.symbol)+' are 0!')
   
 class Metric(Tensor):
 	'''Represents a metric. Note that coordinates now MUST be provided'''
@@ -127,17 +127,17 @@ class Metric(Tensor):
 	def metric(self):
 		temp = sp.eye(self.dim)
 		for key in self.components.keys():
-#			print 'key = ', key
+#			print('key = ', key)
 			id = tuple(np.abs(key))
-#			print 'id =',id
+#			print('id =',id)
 			temp[id] = self.components[key]
-#			print 'compo = ',self.components[key]
-#		print 'temp = ', temp
-#		print 'self = ', self
+#			print('compo = ',self.components[key])
+#		print('temp = ', temp)
+#		print('self = ', self)
 #		for i in range(self.dim):
 #			for j in range(self.dim):
 #				temp[i,j] = self.components[-i,-j]
-#				print 'compo = ',self.components[-i,-j]
+#				print('compo = ',self.components[-i,-j])
 		self.metric = temp		
 #	def determinant(self):
 #		self.metric()

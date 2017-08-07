@@ -21,7 +21,7 @@
 # http://www.gnu.org/licenses/gpl.html.
 ################################################################################
 import sympy as sp
-from Tensor import *
+from GRpy.Tensor import *
 import numpy as np
 
 class Christoffel(Tensor):
