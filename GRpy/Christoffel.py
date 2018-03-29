@@ -21,7 +21,7 @@
 # http://www.gnu.org/licenses/gpl.html.
 ################################################################################
 import sympy as sp
-from Tensor import *
+from GRpy.Tensor import *
 import numpy as np
 
 class Christoffel(Tensor):
@@ -37,7 +37,7 @@ class Christoffel(Tensor):
 		# Please note that this call will trigger a call to allocate in
 		# the Tensor class, but the allocate will actually be the allocate
 		# defined below
-		super(Christoffel,self).__init__('Gamma^{a}_{bc}',(1,2),(1,-1,-1),coords=metr.coords)
+		super(Christoffel,self).__init__('\Gamma^{a}_{\ \ bc}',(1,2),(1,-1,-1),coords=metr.coords)
 		
 	def allocate(self,rank):
 		Tensor.allocate(self,rank)
@@ -50,8 +50,6 @@ class Christoffel(Tensor):
 						term1 = sp.diff(self.g_down[-m,-k],self.g_down.coords[l])
 						term2 = sp.diff(self.g_down[-m,-l],self.g_down.coords[k])
 						term3 = sp.diff(self.g_down[-k,-l],self.g_down.coords[m])
-						tr = self.g_up[i,m] * (term1+term2-term3)
-						suma += tr
-					res = sp.Rational(1,2)*suma
-					self.components[i,-k,-l] = res
+						suma += self.g_up[i,m] * (term1+term2-term3)
+					self.components[i,-k,-l] = sp.Rational(1,2)*suma
 		self.getNonZero()

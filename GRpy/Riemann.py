@@ -22,7 +22,7 @@
 ################################################################################
 
 import sympy as sp
-from Tensor import Tensor,Metric
+from GRpy.Tensor import Tensor,Metric
 from numpy import arange
 
 
@@ -76,7 +76,7 @@ class Riemann(Tensor):
 							suma +=self.g_down[-a,-f]*R_tensor[f,-b,-c,-d]
 						self.components[-a,-b,-c,-d] = suma
 		self.Riemann_cov = self
-		Riemann_par = Tensor('R^{ab}_{cd}',(2,2),(-1,-1,-1,-1),
+		Riemann_par = Tensor('R^{ab}_{\ \ \ cd}',(2,2),(-1,-1,-1,-1),
 		coords=Chris.g_down.coords)
 		for a in arange(self.dim):
 			for b in arange(self.dim):
@@ -138,27 +138,34 @@ class Scalar(object):
 		self.Scr_Other = suma
 		
 	def __str__(self):
-		print 70*'='
-		print "The Ricci scalar is:"
-		print str(sp.cancel(self.Scr_Ricci))
-		print 70*'='
-		print "The Kretschmann scalar is:"
-		print str(sp.cancel(self.Scr_Kretsch))
-		print 70*'='
-		print "The Other scalar is:"
-		print str(sp.cancel(self.Scr_Other))
-		print 70*'='
+		print(70*'=')
+		print("The Ricci scalar is:")
+		print(str(sp.cancel(self.Scr_Ricci)))
+		print(70*'=')
+		print("The Kretschmann scalar is:")
+		print(str(sp.cancel(self.Scr_Kretsch)))
+		print(70*'=')
+		print("The Other scalar is:")
+		print(str(sp.cancel(self.Scr_Other)))
+		print(70*'=')
 
 	def __repr__(self):
 		return self
 
+def Scurv(metric,Ricci):
+	'''Computes the Curvature scalar R = g^{ab}R_{ab}'''
+	suma = 0
+	for i in arange(metric.dim):
+		for j in arange(metric.dim):
+			suma += metric.inverse[i,j]*Ricci[-i,-j]
+	return suma
+
 class Einstein(Tensor):
 	'''Computes the Einstein Tensor'''
-	def __init__(self,metric,Ric,RS):
-		super(Einstein,self).__init__('G_{ab}',(0,2),(-1,-1),coords =Ric.coords)
-		g_down = metric
+	def __init__(self,metric,Ricci):
+		super(Einstein,self).__init__('G_{ab}',(0,2),(-1,-1), coords=metric.coords)
 		for a in arange(self.dim):
 			for b in arange(self.dim):
-				self.components[-a,-b] = Ric[-a,-b] - 0.5*RS*g_down[-a,-b]
+				self.components[-a,-b] = Ricci[-a,-b] - sp.Rational(1,2)*Scurv(metric,Ricci)*metric[-a,-b]
 		self.getNonZero()
 				

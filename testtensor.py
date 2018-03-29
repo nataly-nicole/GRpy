@@ -22,11 +22,7 @@
 ################################################################################
 
 
-from Tensor import *
-from Christoffel import *
-from sympy import *
-from Riemann import *
-
+from GRpy.all import *
 
 t = Symbol('t')
 
